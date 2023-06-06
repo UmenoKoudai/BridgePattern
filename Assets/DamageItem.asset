@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81deeb2abc15f2548a4d53b7a6bb7e2d, type: 3}
-  m_Name: DataBase
+  m_Name: DamageItem
   m_EditorClassIdentifier: 
-  _condition: []
-  _effect: []
+  _id: 0
+  _effect:
+  - _ability:
+      rid: 1336178349000359936
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1336178349000359936
+      type: {class: DamageAbility, ns: , asm: Assembly-CSharp}

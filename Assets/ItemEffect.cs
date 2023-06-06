@@ -7,10 +7,6 @@ using UnityEngine;
 public class ItemEffect
 {
     [SerializeField, SerializeReference, SubclassSelector]
-    List<IConditions> _condition = new List<IConditions>();
-
-    [SerializeField, SerializeReference, SubclassSelector]
     IAbility _ability = null;
 
-    
 }
