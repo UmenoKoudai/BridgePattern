@@ -8,7 +8,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DataBase", menuName = "ItemData")]
 public class ItemData : ScriptableObject
 {
-    [SerializeField] int _id;
     [SerializeField]
-    List<ItemEffect> _effect = new List<ItemEffect>();
+    List<ItemState> _item = new List<ItemState>();
+
+    public List<ItemState> Item { get => _item; } 
 }
