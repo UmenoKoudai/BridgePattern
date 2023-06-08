@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
             if (myItems[i].ItemID == -1)
             {
                 myItems[i] = Resources.Load<ItemData>("ItemBase").Item[_itemID - 1];
+                myItems[i].ItemCount++;
                 Inventory.Instance.SetItem();
                 break;
             }

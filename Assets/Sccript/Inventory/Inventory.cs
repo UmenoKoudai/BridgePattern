@@ -16,8 +16,8 @@ public class Inventory : InstanceSystem<Inventory>
     private void Awake()
     {
         _itemSlotCount = _inventory.transform.childCount;
-        _myItems = Enumerable.Repeat(new ItemState(), ItemSlotCount).ToArray();
-        Load();
+        _myItems = Enumerable.Repeat(new ItemState(-1, default, 1, null), ItemSlotCount).ToArray();
+        //Load();
         SetItem();
         //_inventory.SetActive(false);
     }
@@ -32,52 +32,76 @@ public class Inventory : InstanceSystem<Inventory>
             {
                 viewItem.MyItem = _myItems[i];
             }
-            Save();
-        }
-    }
-
-    void Save()
-    {
-        _getItemIndex = new int[_myItems.Length * 2];
-        int j = 0;
-        for(int i = 0; i < _myItems.Length; i++)
-        {
-            if (_myItems[i].ItemID != -1)
-            {
-                _getItemIndex[j] = _myItems[i].ItemID;
-                j++;
-                _getItemIndex[j] = _myItems[i].ItemCount;
-                j++;
-            }
             else
             {
-                break;
+                viewItem.MyItem = new ItemState(-1, default, 0, null);
             }
+            //Save();
         }
-        _getItemIndex.OnSave();
     }
 
-    void Load()
+    public void ItemCountDown(int id)
     {
-        int[] loadIndex = _getItemIndex.OnLoad();
-        if (loadIndex != null)
+        for(int i = 0; i < _itemSlotCount; i++)
         {
-            int j = 0;
-            for (int i = 0; i < loadIndex.Length / 2; i++)
+            if (_myItems[i].ItemID == id)
             {
-                if (loadIndex[j] != -1)
+                if (_myItems[i].ItemCount > 0)
                 {
-                    _myItems[i] = Resources.Load<ItemData>("ItemBase").Item[loadIndex[j] - 1];
-                    j++;
-                    _myItems[i].ItemCount = loadIndex[j];
-                    j++;
-                }
-
-                else
-                {
+                    _myItems[i].ItemCount--;
+                    if (_myItems[i].ItemCount == 0)
+                    {
+                        _myItems[i] = new ItemState(-1, default, 0, null);
+                        SetItem();
+                    }
                     break;
                 }
             }
         }
     }
+
+    //void Save()
+    //{
+    //    _getItemIndex = new int[_myItems.Length * 2];
+    //    int j = 0;
+    //    for(int i = 0; i < _myItems.Length; i++)
+    //    {
+    //        if (_myItems[i].ItemID != -1)
+    //        {
+    //            _getItemIndex[j] = _myItems[i].ItemID;
+    //            j++;
+    //            _getItemIndex[j] = _myItems[i].ItemCount;
+    //            j++;
+    //        }
+    //        else
+    //        {
+    //            break;
+    //        }
+    //    }
+    //    _getItemIndex.OnSave();
+    //}
+
+    //void Load()
+    //{
+    //    int[] loadIndex = _getItemIndex.OnLoad();
+    //    if (loadIndex != null)
+    //    {
+    //        int j = 0;
+    //        for (int i = 0; i < loadIndex.Length / 2; i++)
+    //        {
+    //            if (loadIndex[j] != -1)
+    //            {
+    //                _myItems[i] = Resources.Load<ItemData>("ItemBase").Item[loadIndex[j] - 1];
+    //                j++;
+    //                _myItems[i].ItemCount = loadIndex[j];
+    //                j++;
+    //            }
+
+    //            else
+    //            {
+    //                break;
+    //            }
+    //        }
+    //    }
+    //}
 }

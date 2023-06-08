@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditorInternal.Profiling.Memory.Experimental;
+using UnityEngine.UI;
 
 public class ItemButton : MonoBehaviour, IPointerClickHandler
 {
@@ -12,18 +9,19 @@ public class ItemButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        _myItem.Ability.Use();
+        if (_myItem.Ability != null)
+        {
+            _myItem.Ability.Use();
+            Inventory.Instance.ItemCountDown(_myItem.ItemID);
+        }
     }
     private void Awake()
     {
-        _myItem = new ItemState();
+        _myItem = new ItemState(-1, default, 0, null);
     }
     void Update()
     {
-        if (_myItem.ItemID != -1)
-        {
-            GetComponent<Image>().sprite = _myItem.ItemImage;
-            GetComponentInChildren<Text>().text = _myItem.ItemCount.ToString();
-        }
+        GetComponent<Image>().sprite = _myItem.ItemImage;
+        GetComponentInChildren<Text>().text = _myItem.ItemCount.ToString();
     }
 }
