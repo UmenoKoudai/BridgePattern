@@ -11,6 +11,7 @@ public class ItemButton : MonoBehaviour, IPointerClickHandler
     {
         if (_myItem.Ability != null)
         {
+            if (_myItem.)
             _myItem.Ability.Use();
             Inventory.Instance.ItemCountDown(_myItem.ItemID);
         }
