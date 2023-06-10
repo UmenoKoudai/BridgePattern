@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICondition
 {
-    public void Check();
+    public bool Check(Evaluator evl);
 }

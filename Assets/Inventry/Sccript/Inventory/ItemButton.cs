@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,11 +10,14 @@ public class ItemButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Evaluator evl = FindObjectOfType<Player>().Evaluator;
         if (_myItem.Ability != null)
         {
-            if (_myItem.)
-            _myItem.Ability.Use();
-            Inventory.Instance.ItemCountDown(_myItem.ItemID);
+            if (_myItem.Condition.All(x => x.Check(evl)))
+            {
+                _myItem.Ability.Use(evl);
+                Inventory.Instance.ItemCountDown(_myItem.ItemID);
+            }
         }
     }
     private void Awake()

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Condition1 : ICondition
+public class RecoveryCondition : ICondition
 {
-    public void Check()
+    public bool Check(Evaluator evl)
     {
-        throw new System.NotImplementedException();
+        return evl.Player;
     }
 }

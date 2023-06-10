@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ItemState: ITarget
+public class ItemState
 {
     [SerializeField] int _itemID = -1;
     [SerializeField] Sprite _itemImage = default;
-    [SerializeField] TargetType _type = TargetType.Player;
     int _itemCount = 1;
 
     [SerializeField, SerializeReference, SubclassSelector]
@@ -21,7 +20,6 @@ public class ItemState: ITarget
     public int ItemCount { get => _itemCount; set => _itemCount = value; }
     public IAbility Ability { get => _ability;}
     public List<ICondition> Condition { get => _condition; }
-    public TargetType TargetType => _type;
 
     public ItemState(int id, Sprite image, int count, IAbility ability)
     {

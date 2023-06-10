@@ -15,21 +15,16 @@ MonoBehaviour:
   _item:
   - _itemID: 1
     _itemImage: {fileID: 21300000, guid: 5d9ba4e7d0964044ea54abe409d81dfd, type: 3}
-    _type: 0
-    _condition:
-    - rid: -2
+    _condition: []
     _ability:
       rid: 1336178378552115210
   - _itemID: 2
     _itemImage: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
-    _type: 2
-    _condition:
-    - rid: 1336178409070133248
+    _condition: []
     _ability:
       rid: 1336178378552115207
   - _itemID: 3
     _itemImage: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
-    _type: 0
     _condition:
     - rid: -2
     _ability:
@@ -41,9 +36,13 @@ MonoBehaviour:
       type: {class: , ns: , asm: }
     - rid: 1336178378552115206
       type: {class: DamageAbility, ns: , asm: Assembly-CSharp}
+      data:
+        _damage: 0
     - rid: 1336178378552115207
       type: {class: RecoveryAbility, ns: , asm: Assembly-CSharp}
+      data:
+        _recovery: 0
     - rid: 1336178378552115210
       type: {class: RecoveryAbility, ns: , asm: Assembly-CSharp}
-    - rid: 1336178409070133248
-      type: {class: Condition1, ns: , asm: Assembly-CSharp}
+      data:
+        _recovery: 0

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RecoveryAbility : IAbility
 {
-    void IAbility.Use()
+    [SerializeField] int _recovery;
+    public void Use(Evaluator evl)
     {
-        Debug.Log("‰ñ•œ");
+        evl.Player.Recovery(_recovery);
     }
 }
